@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dự đoán chi phí bảo hiểm y tế dựa trên thông tin cá nhân">
+    <meta name="keywords" content="bảo hiểm y tế, dự đoán chi phí, AI, machine learning">
+    <title>Medical Insurance Cost Predictor | Dự đoán Chi phí Bảo hiểm Y tế</title>
+    
+    <!-- External CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1>
+                <i class="fas fa-heartbeat" aria-hidden="true"></i>
+                Medical Insurance Cost Predictor
+            </h1>
+            <p>Nhập thông tin để dự đoán chi phí bảo hiểm y tế một cách chính xác và nhanh chóng</p>
+        </header>
+
+        <!-- Main Form -->
+        <main>
+            <form id="prediction-form" class="form-container" novalidate>
+                <div class="form-grid">
+                    <!-- Age Input -->
+                    <div class="form-group">
+                        <label for="age">
+                            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                            Tuổi (Age)
+                        </label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="number" 
+                                id="age" 
+                                name="age"
+                                value="30" 
+                                min="18" 
+                                max="100" 
+                                required
+                                aria-describedby="age-help"
+                                placeholder="Nhập tuổi (18-100)"
+                            >
+                        </div>
+                        <small id="age-help" class="sr-only">Tuổi phải từ 18 đến 100</small>
+                    </div>
+
+                    <!-- Gender Selection -->
+                    <div class="form-group">
+                        <label for="sex">
+                            <i class="fas fa-venus-mars" aria-hidden="true"></i>
+                            Giới tính (Sex)
+                        </label>
+                        <div class="input-wrapper">
+                            <select id="sex" name="sex" required>
+                                <option value="">Chọn giới tính</option>
+                                <option value="female">Nữ (Female)</option>
+                                <option value="male">Nam (Male)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- BMI Input -->
+                    <div class="form-group">
+                        <label for="bmi">
+                            <i class="fas fa-weight" aria-hidden="true"></i>
+                            Chỉ số BMI (Body Mass Index)
+                        </label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="number" 
+                                id="bmi" 
+                                name="bmi"
+                                step="0.1" 
+                                value="25.0" 
+                                min="10"
+                                max="50"
+                                required
+                                aria-describedby="bmi-help"
+                                placeholder="Nhập BMI (10.0-50.0)"
+                            >
+                        </div>
+                        <small id="bmi-help" class="sr-only">BMI tính bằng cân nặng (kg) chia chiều cao (m) bình phương</small>
+                    </div>
+
+                    <!-- Children Count -->
+                    <div class="form-group">
+                        <label for="children">
+                            <i class="fas fa-baby" aria-hidden="true"></i>
+                            Số con (Children)
+                        </label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="number" 
+                                id="children" 
+                                name="children"
+                                value="0" 
+                                min="0" 
+                                max="10" 
+                                required
+                                placeholder="Số con (0-10)"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Smoking Status -->
+                    <div class="form-group">
+                        <label for="smoker">
+                            <i class="fas fa-smoking-ban" aria-hidden="true"></i>
+                            Tình trạng hút thuốc (Smoker)
+                        </label>
+                        <div class="input-wrapper">
+                            <select id="smoker" name="smoker" required>
+                                <option value="">Chọn tình trạng</option>
+                                <option value="no">Không hút thuốc (No)</option>
+                                <option value="yes">Có hút thuốc (Yes)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Region Selection -->
+                    <div class="form-group">
+                        <label for="region">
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            Khu vực sinh sống (Region)
+                        </label>
+                        <div class="input-wrapper">
+                            <select id="region" name="region" required>
+                                <option value="">Chọn khu vực</option>
+                                <option value="southwest">Tây Nam (Southwest)</option>
+                                <option value="southeast">Đông Nam (Southeast)</option>
+                                <option value="northwest">Tây Bắc (Northwest)</option>
+                                <option value="northeast">Đông Bắc (Northeast)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="predict-btn" id="predict-button">
+                    <i class="fas fa-calculator" aria-hidden="true"></i>
+                    <span class="btn-text">Dự đoán chi phí</span>
+                    <div class="spinner" aria-hidden="true"></div>
+                </button>
+            </form>
+
+            <!-- Results Section -->
+            <section class="result-container" id="result-container" aria-live="polite">
+                <h2>
+                    <i class="fas fa-chart-line" aria-hidden="true"></i>
+                    Kết quả dự đoán
+                </h2>
+                <div id="result-box">
+                    <p id="prediction-output" role="status">---</p>
+                    <div class="feature-pills">
+                        <span class="feature-pill">
+                            <i class="fas fa-robot" aria-hidden="true"></i>
+                            AI Powered
+                        </span>
+                        <span class="feature-pill">
+                            <i class="fas fa-bullseye" aria-hidden="true"></i>
+                            Accurate Prediction
+                        </span>
+                        <span class="feature-pill">
+                            <i class="fas fa-clock" aria-hidden="true"></i>
+                            Real-time
+                        </span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer Info -->
+        <footer style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+            <p style="color: #6b7280; font-size: 0.9rem;">
+                <i class="fas fa-info-circle" aria-hidden="true"></i>
+                Kết quả chỉ mang tính chất tham khảo. 
+                <strong>Phím tắt:</strong> Ctrl+Enter (Dự đoán), ESC (Xóa form)
+            </p>
+        </footer>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="static/js/script.js"></script>
+
+    <!-- Screen Reader Only Styles -->
+    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</body>
+</html>
