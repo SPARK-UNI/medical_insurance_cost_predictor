@@ -332,7 +332,134 @@ body::before {
     box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1) !important;
 }
 
-/* Responsive Design */
+/* Footer Styling */
+.footer-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #e5e7eb;
+}
+
+.student-info {
+    margin-bottom: 25px;
+}
+
+.student-info h3 {
+    text-align: center;
+    color: #374151;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.student-info h3 i {
+    color: #667eea;
+}
+
+.student-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.student-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.student-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+.student-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);
+    border-color: #667eea;
+}
+
+.student-avatar {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.student-details h4 {
+    margin: 0 0 4px 0;
+    color: #374151;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.student-details p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 0.85rem;
+    font-family: 'Courier New', monospace;
+}
+
+.app-info {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.app-info p {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .student-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .student-card {
+        padding: 12px;
+    }
+    
+    .student-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 0.8rem;
+    }
+    
+    .student-details h4 {
+        font-size: 0.9rem;
+    }
+    
+    .student-details p {
+        font-size: 0.8rem;
+    }
+}
 @media (max-width: 768px) {
     .container {
         padding: 30px 20px;

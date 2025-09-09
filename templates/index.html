@@ -89,7 +89,13 @@
                                 placeholder="Nhập BMI (10.0-50.0)"
                             >
                         </div>
-                        <small id="bmi-help" class="sr-only">BMI tính bằng cân nặng (kg) chia chiều cao (m) bình phương</small>
+                        <small id="bmi-help" class="bmi-guide">
+                            📊 <strong>BMI Guide:</strong> 
+                            <span class="bmi-underweight">Gầy: &lt;18.5</span> | 
+                            <span class="bmi-normal">Bình thường: 18.5-24.9</span> | 
+                            <span class="bmi-overweight">Thừa cân: 25-29.9</span> | 
+                            <span class="bmi-obese">Béo phì: ≥30</span>
+                        </small>
                     </div>
 
                     <!-- Children Count -->
@@ -180,12 +186,48 @@
         </main>
 
         <!-- Footer Info -->
-        <footer style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
-            <p style="color: #6b7280; font-size: 0.9rem;">
-                <i class="fas fa-info-circle" aria-hidden="true"></i>
-                Kết quả chỉ mang tính chất tham khảo. 
-                <strong>Phím tắt:</strong> Ctrl+Enter (Dự đoán), ESC (Xóa form)
-            </p>
+        <footer class="footer-section">
+            <!-- Student Info -->
+            <div class="student-info">
+                <h3>
+                    <i class="fas fa-users" aria-hidden="true"></i>
+                    Thông tin nhóm sinh viên
+                </h3>
+                <div class="student-grid">
+                    <div class="student-card">
+                        <div class="student-avatar">HH</div>
+                        <div class="student-details">
+                            <h4>Hồ Hoàn Hảo</h4>
+                            <p>MSSV: 31231020327</p>
+                        </div>
+                    </div>
+                    
+                    <div class="student-card">
+                        <div class="student-avatar">VN</div>
+                        <div class="student-details">
+                            <h4>Vũ Thị Hoàng Nhi</h4>
+                            <p>MSSV: 31231020245</p>
+                        </div>
+                    </div>
+                    
+                    <div class="student-card">
+                        <div class="student-avatar">DT</div>
+                        <div class="student-details">
+                            <h4>Đinh Tấn Tài</h4>
+                            <p>MSSV: 31231021732</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- App Info -->
+            <div class="app-info">
+                <p>
+                    <i class="fas fa-info-circle" aria-hidden="true"></i>
+                    Kết quả chỉ mang tính chất tham khảo. 
+                    <strong>Phím tắt:</strong> Ctrl+Enter (Dự đoán), ESC (Xóa form)
+                </p>
+            </div>
         </footer>
     </div>
 
